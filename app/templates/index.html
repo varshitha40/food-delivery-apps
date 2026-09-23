@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Foodie - Food Delivery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8f4;
+            color: #18202a;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 55px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff654f;
+        }
+
+        .logo span {
+            font-size: 28px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 42px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-size: 17px;
+        }
+
+        nav ul li a:hover {
+            color: #ff654f;
+        }
+
+        .login-btn {
+            background: #ff654f;
+            color: white !important;
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            padding-top: 75px;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 70px 7%;
+        }
+
+        /* ================= HOME ================= */
+
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff8f4;
+        }
+
+        .home-text {
+            width: 50%;
+        }
+
+        .small-title {
+            color: #ff654f;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .home-text h1 {
+            font-size: 58px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .home-text h1 span {
+            color: #ff654f;
+        }
+
+        .home-text p {
+            color: #777;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #ff654f;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .home-button:hover {
+            background: #ff4932;
+        }
+
+        .home-image {
+            width: 42%;
+            text-align: center;
+            font-size: 180px;
+        }
+
+        /* ================= RESTAURANTS ================= */
+
+        #restaurants {
+            background: #fff8f4;
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+        }
+
+        .section-title p {
+            color: #ff654f;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            color: #888;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+            transition: 0.3s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .restaurant-picture {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+        }
+
+        .burger-bg {
+            background: #fff0d3;
+        }
+
+        .pizza-bg {
+            background: #ffdfe1;
+        }
+
+        .spice-bg {
+            background: #eee4f7;
+        }
+
+        .restaurant-info {
+            padding: 25px;
+        }
+
+        .rating {
+            color: #e9aa13;
+            margin-bottom: 12px;
+        }
+
+        .restaurant-info h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .restaurant-info p {
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .order-btn {
+            display: inline-block;
+            background: #fff0eb;
+            color: #ff654f;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .order-btn:hover {
+            background: #ff654f;
+            color: white;
+        }
+
+        /* ================= MENU ================= */
+
+        #menu {
+            background: white;
+            text-align: center;
+        }
+
+        .menu-title {
+            margin-bottom: 45px;
+        }
+
+        .menu-title h2 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .menu-title p {
+            color: #888;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .food-card {
+            background: #fff8f4;
+            padding: 25px;
+            border-radius: 20px;
+        }
+
+        .food-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .food-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .food-card p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            color: #ff654f;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* ================= PARTNER ================= */
+
+        #partner {
+            background: #ffece7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .partner-text {
+            width: 55%;
+        }
+
+        .partner-text h2 {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .partner-text p {
+            color: #777;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        .partner-image {
+            font-size: 160px;
+            text-align: center;
+        }
+
+        /* ================= FEATURES ================= */
+
+        #features {
+            background: white;
+        }
+
+        .features-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .features-title h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .features-title p {
+            color: #888;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px;
+            background: #fff8f4;
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #888;
+            line-height: 1.5;
+        }
+
+        /* ================= FLOATING FOOD ================= */
+
+        .floating-food {
+            position: fixed;
+            font-size: 30px;
+            opacity: 0.35;
+            animation: float 5s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .food1 {
+            top: 18%;
+            left: 4%;
+        }
+
+        .food2 {
+            top: 35%;
+            right: 3%;
+            animation-delay: 1s;
+        }
+
+        .food3 {
+            bottom: 12%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .food4 {
+            bottom: 20%;
+            right: 6%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            #home {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .home-text {
+                width: 100%;
+            }
+
+            .home-text h1 {
+                font-size: 42px;
+            }
+
+            .home-image {
+                width: 100%;
+                font-size: 100px;
+                margin-top: 30px;
+            }
+
+            .restaurant-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #partner {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .partner-text {
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 50px 20px;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🍔 Foodie
+        </div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#restaurants">Restaurants</a></li>
+            <li><a href="#partner">Partner</a></li>
+            <li><a href="#features">Features</a></li>
+            <li>
+                <a href="#" class="login-btn">Login</a>
+            </li>
+        </ul>
+
+    </nav>
+
+
+    <div class="main">
+
+        <!-- FLOATING FOOD -->
+
+        <div class="floating-food food1">🍕</div>
+        <div class="floating-food food2">🍔</div>
+        <div class="floating-food food3">🍟</div>
+        <div class="floating-food food4">🍩</div>
+
+
+        <!-- ================= HOME ================= -->
+
+        <section id="home">
+
+            <div class="home-text">
+
+                <div class="small-title">
+                    ⭐ YOUR FOOD, YOUR WAY
+                </div>
+
+                <h1>
+                    Delicious food<br>
+                    <span>delivered to you</span>
+                </h1>
+
+                <p>
+                    Discover delicious meals from your favourite
+                    restaurants and get them delivered right to your door.
+                </p>
+
+                <a href="#restaurants" class="home-button">
+                    Order Food →
+                </a>
+
+            </div>
+
+            <div class="home-image">
+                🛵
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESTAURANTS ================= -->
+
+        <section id="restaurants">
+
+            <div class="section-title">
+
+                <p>⭐ TOP RESTAURANTS</p>
+
+                <h2>Your Favourite Food</h2>
+
+                <span>
+                    Discover delicious food near you
+                </span>
+
+            </div>
+
+
+            <div class="restaurant-grid">
+
+
+                <!-- BURGER HOUSE -->
+
+                <div class="restaurant-card">
+
+                    <div class="restaurant-picture burger-bg">
+                        🍔
+                    </div>
+
+                    <div class="restaurant-info">
+
+                        <div class="rating">
+                            ⭐ 4.4
+                        </div>
+
+                        <h3>
+                            Burger House
+                        </h3>
+
+                        <p>
+                            Burgers • Fast Food
+                        </p>
+
+                        <!-- RESTAURANT ID 3 -->
+
+                        <a href="/restaurant/3" class="order-btn">
+                            Order →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PIZZA PARADISE -->
+
+                <div class="restaurant-card">
+
+                    <div class="restaurant-picture pizza-bg">
+                        🍕
+                    </div>
+
+                    <div class="restaurant-info">
+
+                        <div class="rating">
+                            ⭐ 4.7
+                        </div>
+
+                        <h3>
+                            Pizza Paradise
+                        </h3>
+
+                        <p>
+                            Pizza • Italian
+                        </p>
+
+                        <!-- RESTAURANT ID 2 -->
+
+                        <a href="/restaurant/2" class="order-btn">
+                            Order →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SPICE GARDEN -->
+
+                <div class="restaurant-card">
+
+                    <div class="restaurant-picture spice-bg">
+                        🍜
+                    </div>
+
+                    <div class="restaurant-info">
+
+                        <div class="rating">
+                            ⭐ 4.5
+                        </div>
+
+                        <h3>
+                            Spice Garden
+                        </h3>
+
+                        <p>
+                            Asian • Indian
+                        </p>
+
+                        <!-- RESTAURANT ID 1 -->
+
+                        <a href="/restaurant/1" class="order-btn">
+                            Order →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MENU ================= -->
+
+        <section id="menu">
+
+            <div class="menu-title">
+
+                <h2>🍴 Popular Food</h2>
+
+                <p>
+                    Some of our most loved dishes
+                </p>
+
+            </div>
+
+
+            <div class="food-grid">
+
+                <div class="food-card">
+                    <div class="food-icon">🍕</div>
+                    <h3>Margherita Pizza</h3>
+                    <p>Classic cheese pizza</p>
+                    <div class="price">₹199</div>
+                </div>
+
+                <div class="food-card">
+                    <div class="food-icon">🍔</div>
+                    <h3>Cheese Burger</h3>
+                    <p>Juicy burger with cheese</p>
+                    <div class="price">₹149</div>
+                </div>
+
+                <div class="food-card">
+                    <div class="food-icon">🥞</div>
+                    <h3>Masala Dosa</h3>
+                    <p>Crispy dosa with potato masala</p>
+                    <div class="price">₹80</div>
+                </div>
+
+                <div class="food-card">
+                    <div class="food-icon">🍟</div>
+                    <h3>French Fries</h3>
+                    <p>Crispy golden fries</p>
+                    <div class="price">₹99</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PARTNER ================= -->
+
+        <section id="partner">
+
+            <div class="partner-text">
+
+                <h2>
+                    Become a Foodie Partner 🤝
+                </h2>
+
+                <p>
+                    Join our growing network of restaurants and
+                    delivery partners. Reach more customers and
+                    grow your business with Foodie.
+                </p>
+
+                <a href="#" class="home-button">
+                    Become a Partner →
+                </a>
+
+            </div>
+
+            <div class="partner-image">
+                👨‍🍳
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section id="features">
+
+            <div class="features-title">
+
+                <h2>
+                    Why Choose Foodie?
+                </h2>
+
+                <p>
+                    Everything you need for a great food experience
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚀
+                    </div>
+
+                    <h3>
+                        Fast Delivery
+                    </h3>
+
+                    <p>
+                        Get your favourite food delivered quickly.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🍴
+                    </div>
+
+                    <h3>
+                        Great Food
+                    </h3>
+
+                    <p>
+                        Choose from delicious meals and restaurants.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📍
+                    </div>
+
+                    <h3>
+                        Order Tracking
+                    </h3>
+
+                    <p>
+                        Track your order from restaurant to doorstep.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        💳
+                    </div>
+
+                    <h3>
+                        Easy Payment
+                    </h3>
+
+                    <p>
+                        Simple and secure payment options.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>

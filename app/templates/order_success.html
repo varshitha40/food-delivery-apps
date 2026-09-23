@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed - Foodie</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff8f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .success-icon {
+            font-size: 80px;
+        }
+
+        h1 {
+            color: #ff654f;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .order-number {
+            background: #fff0eb;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-weight: bold;
+            color: #ff654f;
+        }
+
+        .button {
+            display: inline-block;
+            background: #ff654f;
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 8px;
+        }
+
+        .button:hover {
+            background: #ff4932;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="box">
+
+        <div class="success-icon">
+            🎉
+        </div>
+
+        <h1>
+            Order Placed Successfully!
+        </h1>
+
+        <p>
+            Thank you for ordering from Foodie ❤️
+        </p>
+
+        <div class="order-number">
+
+            Order #{{ order.id }}
+
+        </div>
+
+        <p>
+            Your food is being prepared.
+        </p>
+
+        <p>
+            🚴 Delivery partner will be assigned soon.
+        </p>
+
+        <a href="/" class="button">
+            🏠 Back to Home
+        </a>
+
+        <a href="/restaurants" class="button">
+            🍴 Order More
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

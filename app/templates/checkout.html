@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - Foodie</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff8f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        /* HEADER */
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff654f;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #ff654f;
+            font-weight: bold;
+        }
+
+        /* TITLE */
+
+        h1 {
+            text-align: center;
+            color: #ff654f;
+            margin-bottom: 35px;
+        }
+
+        /* LAYOUT */
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 22px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
+        }
+
+        .box h2 {
+            margin-top: 0;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        /* FORM */
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #ff654f;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        /* ORDER ITEMS */
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-name {
+            font-weight: bold;
+        }
+
+        .quantity {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .item-price {
+            color: #ff654f;
+            font-weight: bold;
+        }
+
+        /* TOTAL */
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .total-price {
+            color: #ff654f;
+        }
+
+        /* PAYMENT */
+
+        .payment-option {
+            background: #fff8f4;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .payment-option label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .payment-option input {
+            width: auto;
+            margin: 0 10px 0 0;
+        }
+
+        /* BUTTON */
+
+        .place-order {
+            width: 100%;
+            border: none;
+            background: #ff654f;
+            color: white;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .place-order:hover {
+            background: #ff4932;
+        }
+
+        /* SECURITY */
+
+        .secure {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <div class="logo">
+            🍔 Foodie
+        </div>
+
+        <a href="/cart" class="back">
+            ← Back to Cart
+        </a>
+
+    </div>
+
+
+    <h1>
+        🛒 Checkout
+    </h1>
+
+
+    <div class="checkout-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div>
+
+
+            <!-- DELIVERY DETAILS -->
+
+            <div class="box">
+
+                <h2>
+                    📍 Delivery Details
+                </h2>
+
+
+                <form action="/place-order" method="POST">
+
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+
+                    <label>
+                        Delivery Address
+                    </label>
+
+                    <textarea
+                        name="address"
+                        placeholder="Enter your complete delivery address"
+                        required
+                    ></textarea>
+
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="Enter your city"
+                        required
+                    >
+
+
+                    <!-- PAYMENT -->
+
+                    <h2 style="margin-top: 30px;">
+                        💳 Payment Method
+                    </h2>
+
+
+                    <div class="payment-option">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="Cash on Delivery"
+                                checked
+                            >
+
+                            💵 Cash on Delivery
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="payment-option">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="UPI"
+                            >
+
+                            📱 UPI
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="payment-option">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="Card"
+                            >
+
+                            💳 Credit / Debit Card
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="place-order"
+                    >
+
+                        ✅ Place Order
+
+                    </button>
+
+
+                    <div class="secure">
+
+                        🔒 Your information is secure
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <div class="box">
+
+                <h2>
+                    🧾 Order Summary
+                </h2>
+
+
+                {% for cart_item in cart_items %}
+
+
+                <div class="order-item">
+
+                    <div>
+
+                        <div class="item-name">
+
+                            {{ cart_item.item.name }}
+
+                        </div>
+
+                        <div class="quantity">
+
+                            Qty: {{ cart_item.quantity }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="item-price">
+
+                        ₹{{ cart_item.subtotal }}
+
+                    </div>
+
+                </div>
+
+
+                {% endfor %}
+
+
+                <div class="total-row">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span class="total-price">
+
+                        ₹{{ total }}
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DELIVERY INFO -->
+
+            <div class="box">
+
+                <h2>
+                    🚴 Delivery
+                </h2>
+
+                <p>
+                    ⚡ Fast delivery
+                </p>
+
+                <p>
+                    📍 Doorstep delivery
+                </p>
+
+                <p>
+                    🔔 Real-time order tracking
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
